@@ -3,6 +3,7 @@ package aurora.JournalApp.controller;
 import aurora.JournalApp.entity.JournalEntry;
 import aurora.JournalApp.repository.JournalEntryRepository;
 import aurora.JournalApp.service.JournalEntryService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -33,20 +34,20 @@ public class JournalEntryController {
     }
 
     @GetMapping("id/{myId}")
-    public ResponseEntity<JournalEntry> getById(@PathVariable String myId){
+    public ResponseEntity<JournalEntry> getById(@PathVariable ObjectId myId){
         System.out.println("id get...");
         return entry.getEntryById(myId);
     }
 
     @DeleteMapping("id/{myId}")
-    public ResponseEntity<JournalEntry> deleteById(@PathVariable String myId){
+    public ResponseEntity<JournalEntry> deleteById(@PathVariable ObjectId myId){
 
         System.out.println("Record deleted id: "+myId);
         return entry.deleteById(myId);
     }
 
     @PutMapping("update/id/{myId}")
-    public ResponseEntity<JournalEntry> update(@PathVariable String myId, @RequestBody JournalEntry newObj) {
+    public ResponseEntity<JournalEntry> update(@PathVariable ObjectId myId, @RequestBody JournalEntry newObj) {
         Optional<JournalEntry> optionalOld = journalEntryRepository.findById(myId);
 
         if (optionalOld.isPresent()) {

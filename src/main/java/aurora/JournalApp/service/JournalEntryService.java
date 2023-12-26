@@ -23,7 +23,7 @@ public class JournalEntryService {
         return journalEntryRepository.findAll();
     }
 
-    public ResponseEntity<JournalEntry> getEntryById(String ID) {
+    public ResponseEntity<JournalEntry> getEntryById(ObjectId ID) {
         Optional<JournalEntry> optionalEntry = journalEntryRepository.findById(ID);
 
         if (optionalEntry.isPresent()) {
@@ -34,7 +34,7 @@ public class JournalEntryService {
         }
     }
 
-    public ResponseEntity<JournalEntry> deleteById(String deleteId){
+    public ResponseEntity<JournalEntry> deleteById(ObjectId deleteId){
         Optional<JournalEntry> optionalEntry = journalEntryRepository.findById(deleteId);
 
         if (optionalEntry.isPresent()) {
